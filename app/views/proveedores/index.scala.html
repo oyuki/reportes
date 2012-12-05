@@ -1,0 +1,46 @@
+@(formaFiltros: Form[formas.proveedores.Filtro])
+
+@import helper._
+
+@main("Proveedores") {
+  @form(action = routes.Proveedores.index) {
+	    <div class="span12">
+	      <div class="span4">
+	        @inputText(
+            field = formaFiltros("clave_proveed"),
+            args = '_label -> "Clave"
+          )
+	      </div>
+	      <div class="span4">
+          @inputText(
+            field = formaFiltros("nombre_proveed"),
+            args = '_label -> "Nombre"
+          )
+        </div>
+      </div>
+      <div class="span12">
+        <div class="span4">
+          @inputText(
+            field = formaFiltros("rfc_proveed"),
+            args = '_label -> "RFC"
+          )
+        </div>
+        <div class="span4">
+          <input type="submit" value="Filtrar">
+        </div>
+	    </div>
+	}
+
+  <table class="table table-striped table-bordered">
+    <caption> Clientes </caption>
+    <thead>
+       <tr>
+         <th> Clave </th>
+         <th> Nombre </th>
+         <th> RFC </th>
+       </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+}

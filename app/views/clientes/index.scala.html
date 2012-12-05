@@ -1,0 +1,27 @@
+@(clientes: List[Cliente])
+
+@import helper._
+
+@main("Clientes") {
+
+  <table class="table table-striped table-bordered">
+    <caption> Clientes </caption>
+    <thead>
+       <tr>
+         <th> Nombre </th>
+         <th> Apellido Paterno </th>
+         <th> RFC </th>
+       </tr>
+    </thead>
+    
+    <tbody>
+      @clientes.map { cliente =>
+        <tr>
+          <td>@cliente.nombre_cte</td>
+          <td>@cliente.ap_pat_cte</td>
+          <td>@cliente.rfc_cte</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}

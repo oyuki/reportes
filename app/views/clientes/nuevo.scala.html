@@ -1,0 +1,28 @@
+@(formaCliente: Form[formas.Cliente])
+
+@import helper._
+
+@main("Nuevo Cliente") {
+  
+  @form(action = routes.Clientes.crear) {
+     @inputText(
+        field = formaCliente("nombre_cte"),
+        args = '_label -> "Nombre"
+     )
+
+     @inputText(
+        field = formaCliente("ap_pat_cte"),
+        args = '_label -> "Apellido Paterno"
+     )
+
+     @inputText(
+        field = formaCliente("rfc_cte"),
+        args = '_label -> "RFC"
+     )
+     
+     <p class="buttons">
+       <input type="submit" value="Guardar">
+     </p>
+  }
+
+}
