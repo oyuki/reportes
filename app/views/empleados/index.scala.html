@@ -1,29 +1,29 @@
-  @(clientes: List[Cliente], formaFiltros: Form[formas.clientes.Filtro])
+@(formaFiltros: Form[formas.empleados.Filtro])
 
 @import helper._
 
-@main("Clientes") {
+@main("empleados") {
 
-@form(action = routes.Clientes.index) {
+@form(action = routes.Empleados.index) {
       <div class="span12">
         <div class="span4">
           @inputText(
-            field = formaFiltros("nombre_cte"),
-            args = '_label -> "Nombre"
+            field = formaFiltros("num_empl"),
+            args = '_label -> "Numero Empleado"
           )
         </div>
         <div class="span4">
           @inputText(
-            field = formaFiltros("ap_pat_cte"),
-            args = '_label -> "Apellido"
+            field = formaFiltros("nomb_empl"),
+            args = '_label -> "Nombre"
           )
         </div>
       </div>
       <div class="span12">
         <div class="span4">
           @inputText(
-            field = formaFiltros("rfc_cte"),
-            args = '_label -> "RFC"
+            field = formaFiltros("ap_pat_empl"),
+            args = '_label -> "Apellido Paterno"
           )
         </div>
         <div class="span4">
@@ -33,23 +33,21 @@
   }
 
   <table class="table table-striped table-bordered">
-    <caption> Clientes </caption>
+    <caption> Empleados </caption>
     <thead>
        <tr>
+         <th> Numero </th>
          <th> Nombre </th>
          <th> Apellido Paterno </th>
-         <th> RFC </th>
        </tr>
     </thead>
     
     <tbody>
-      @clientes.map { cliente =>
         <tr>
-          <td>@cliente.nombre_cte</td>
-          <td>@cliente.ap_pat_cte</td>
-          <td>@cliente.rfc_cte</td>
+          <td>1</td>
+          <td>Empleado</td>
+          <td>Apellido</td>
         </tr>
-      }
     </tbody>
   </table>
 }

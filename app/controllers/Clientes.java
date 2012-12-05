@@ -18,7 +18,7 @@ public class Clientes extends Controller {
 	
 	public static Result index() {
 		List<Cliente> clientes = Cliente.find.all();
-		return ok(views.html.clientes.index.render(clientes));
+		return ok(views.html.clientes.index.render(clientes,form(formas.clientes.Filtro.class)));
 	}
 	
 	public static Result nuevo() {
