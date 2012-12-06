@@ -1,0 +1,45 @@
+@(formaFiltros: Form[formas.productos.Filtro])
+
+@import helper._
+
+@main("productos") {
+
+@form(action = routes.Productos.index) {
+      <div class="span12">
+        <div class="span4">
+          @inputText(
+            field = formaFiltros("clav_prod"),
+            args = '_label -> "Clave Producto"
+          )
+        </div>
+        <div class="span4">
+          @inputText(
+            field = formaFiltros("nom_prod"),
+            args = '_label -> "Nombre Producto"
+          )
+        </div>
+      </div>
+      <div class="span12">
+        <div class="span4">
+          @inputText(
+            field = formaFiltros("prec_prod"),
+            args = '_label -> "Precio producto"
+          )
+        </div>
+        <div class="span4">
+          <input type="submit" value="Filtrar">
+        </div>
+      </div>
+  }
+
+  <table class="table table-striped table-bordered">
+    <caption> Productos </caption>
+    <thead>
+       <tr>
+         <th> Clave Producto </th>
+         <th> Nombre  Producto</th>
+         <th> Precio Producto </th>
+       </tr>
+    </thead>
+  </table>
+}
