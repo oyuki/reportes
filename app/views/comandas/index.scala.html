@@ -1,0 +1,51 @@
+@(formaFiltros: Form[formas.comandas.Filtro])
+
+@import helper._
+
+@main("comandas") {
+
+@form(action = routes.Comandas.index) {
+      <div class="span12">
+        <div class="span4">
+          @inputText(
+            field = formaFiltros("num_coman"),
+            args = '_label -> "Numero Comanda"
+          )
+        </div>
+        <div class="span4">
+          @inputText(
+            field = formaFiltros("fech_coman"),
+            args = '_label -> "Fecha Comanda"
+          )
+        </div>
+      </div>
+      <div class="span12">
+        <div class="span4">
+          @inputText(
+            field = formaFiltros("total_coman"),
+            args = '_label -> "Total Comanda"
+          )
+        </div>
+        <div class="span4">
+        
+          <input type="submit" value="Filtrar">
+          
+          <input type="submit" value="calendario">
+          desde hasta 
+          <input type="submit" value="calendario">
+          
+        </div>
+      </div>
+  }
+
+  <table class="table table-striped table-bordered">
+    <caption> Comandas </caption>
+    <thead>
+       <tr>
+         <th> Numero de Comanda </th>
+         <th> Fecha</th>
+         <th> Total </th>
+       </tr>
+    </thead>
+  </table>
+}
