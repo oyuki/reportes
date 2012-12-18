@@ -2,9 +2,9 @@
 
 @import helper._
 
-@main("empleados") {
+@main("Empleados") {
 
-@form(action = routes.Empleados.index) {
+  @form(action = routes.Empleados.index) {
       <div class="span12">
         <div class="span4">
           @inputText(
@@ -15,7 +15,7 @@
         <div class="span4">
           @inputText(
             field = formaFiltros("nomb_empl"),
-            args = '_label -> "Nombre"
+            args = '_label -> "Nivel"
           )
         </div>
       </div>
@@ -25,6 +25,7 @@
             field = formaFiltros("ap_pat_empl"),
             args = '_label -> "Apellido Paterno"
           )
+          
         </div>
         <div class="span4">
           <input type="submit" value="Filtrar">

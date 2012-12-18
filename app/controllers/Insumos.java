@@ -10,13 +10,12 @@ import play.data.*;
 import play.db.ebean.*;
 import static play.data.Form.*;
 
-import views.html.empleados.*;
+import views.html.insumos.*;
 
-public class Empleados extends Controller {
+public class Insumos extends Controller {
 	
 	public static Result index() {
-		return ok(views.html.empleados.index.render(form(formas.empleados.Filtro.class)));
-       }
+		return ok(views.html.insumos.index.render(form(formas.insumos.Filtro.class)));
+	}
+
 }
-	
-	

@@ -1,0 +1,15 @@
+#titulo-login {
+  text-align: center;
+  border: 1px solid #E5E5E5;
+}
+
+.body-estilo {
+  "background-color: #7F7F7F;"
+  
+  
+}
+
+body {
+  background-image: url("/assets/images/logo.png");
+  background-repeat: no-repeat;
+}

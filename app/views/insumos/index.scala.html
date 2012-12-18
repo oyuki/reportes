@@ -1,20 +1,20 @@
-@(clientes: List[Cliente], formaFiltros: Form[formas.clientes.Filtro])
+@(formaFiltros: Form[formas.insumos.Filtro])
 
 @import helper._
 
-@main("Clientes") {
+@main("insumos") {
 
-@form(action = routes.Clientes.index) {
+@form(action = routes.Niveles.index) {
       <div class="span12">
         <div class="span4">
           @inputText(
-            field = formaFiltros("nombre_cte"),
-            args = '_label -> "Numero clientes"
+            field = formaFiltros("clav_insumo"),
+            args = '_label -> "Clave Insumo"
           )
         </div>
         <div class="span4">
           @inputText(
-            field = formaFiltros("ap_pat_cte"),
+            field = formaFiltros("Nombre"),
             args = '_label -> "Nombre"
           )
         </div>
@@ -22,24 +22,24 @@
       <div class="span12">
         <div class="span4">
           @inputText(
-            field = formaFiltros("rfc_cte"),
-            args = '_label -> "RFC"
+            field = formaFiltros("clave_segmento_insumo"),
+            args = '_label -> "Clave segmento"
           )
         </div>
         <div class="span4">
-          <input type="submit" value="Filtrar">
+          <input type="submit" value="Filtrar">         
         </div>
       </div>
   }
 
   <table class="table table-striped table-bordered">
-    <caption>Clientes</caption>
+    <caption> Insumos </caption>
     <thead>
        <tr>
-         <th> Num. Cliente </th>
+         <th>  </th>
+         <th> Clave Insumo</th>
          <th> Nombre </th>
-         <th> RFC </th>
        </tr>
     </thead>
-    
+  </table>
 }

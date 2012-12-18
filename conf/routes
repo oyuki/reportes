@@ -24,6 +24,8 @@ GET /niveles                         controllers.Niveles.index()
 #Productos
 GET /productos                       controllers.Productos.index()
 
+#Insumos
+GET /insumos                         controllers.Insumos.index()                    
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -14,7 +14,7 @@
 	      <div class="span4">
           @inputText(
             field = formaFiltros("nombre_proveed"),
-            args = '_label -> "Nombre"
+            args = '_label -> " Empresa"
           )
         </div>
       </div>
@@ -22,13 +22,13 @@
         <div class="span4">
           @inputText(
             field = formaFiltros("rfc_proveed"),
-            args = '_label -> "RFC"
+            args = '_label -> "Telefono"
           )
         </div>
         <div class="span4">
           <input type="submit" value="Filtrar">
         </div>
-	    </div>
+	    </div>  
 	}
 
   <table class="table table-striped table-bordered">
@@ -36,8 +36,8 @@
     <thead>
        <tr>
          <th> Clave </th>
-         <th> Nombre </th>
-         <th> RFC </th>
+         <th> Empresa </th>
+         <th> Telefono </th>
        </tr>
     </thead>
     <tbody>
