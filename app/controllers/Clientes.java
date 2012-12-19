@@ -46,4 +46,12 @@ public class Clientes extends Controller {
 		// Una vez creado el registro, redireccionamos el cliente a la accion index
 		return redirect(routes.Clientes.index());
 	}
+	
+	 public static Result individual() {
+	    return ok(views.html.clientes.individual.render(form(formas.clientes.Individual.class)));
+	 }
+	
 }
+
+
+   
