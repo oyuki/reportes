@@ -9,17 +9,9 @@
         <div class="span4">
           @inputText(
             field = formaFiltros("nombre_cte"),
-            args = '_label -> "Numero clientes"
+            args = '_label -> "Nombre Cliente"
           )
         </div>
-        <div class="span4">
-          @inputText(
-            field = formaFiltros("ap_pat_cte"),
-            args = '_label -> "Nombre"
-          )
-        </div>
-      </div>
-      <div class="span12">
         <div class="span4">
           @inputText(
             field = formaFiltros("rfc_cte"),
@@ -41,5 +33,15 @@
          <th> RFC </th>
        </tr>
     </thead>
+    <tbody>
+    @clientes.map { cliente =>
+      <tr>
+        <td>@cliente.num_cte</td>
+        <td>@cliente.nomb_cte @cliente.ap_pat_cte @cliente.ap_mat_cte</td>
+        <td>@cliente.rfc_cte</td>
+      </tr>
+    }
+    </tbody>
     
+  </table>
 }

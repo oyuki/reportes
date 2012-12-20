@@ -12,6 +12,7 @@ POST /clientes                       controllers.Clientes.crear()
 
 # Proveedores
 GET  /proveedores                    controllers.Proveedores.index()
+GET /proveedores/individual          controllers.Proveedores.individual()
 
 # Empleados
 GET  /empleados                      controllers.Empleados.index()

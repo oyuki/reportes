@@ -6,23 +6,9 @@
   @form(action = routes.Proveedores.index) {
 	    <div class="span12">
 	      <div class="span4">
-	        @inputText(
-            field = formaFiltros("clave_proveed"),
-            args = '_label -> "Clave"
-          )
-	      </div>
-	      <div class="span4">
           @inputText(
-            field = formaFiltros("nombre_proveed"),
+            field = formaFiltros("compa–ia_proveed"),
             args = '_label -> " Empresa"
-          )
-        </div>
-      </div>
-      <div class="span12">
-        <div class="span4">
-          @inputText(
-            field = formaFiltros("rfc_proveed"),
-            args = '_label -> "Telefono"
           )
         </div>
         <div class="span4">
@@ -32,7 +18,7 @@
 	}
 
   <table class="table table-striped table-bordered">
-    <caption> Clientes </caption>
+    <caption> Proveedor</caption>
     <thead>
        <tr>
          <th> Clave </th>

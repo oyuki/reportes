@@ -1,0 +1,31 @@
+@(forma: Form[formas.proveedores.Individual] )
+
+@import helper._
+
+@main("Proveedores") {
+  
+  @form(action = routes.Proveedores.individual) {
+      <div class="span12">
+        <div class="span4">
+          @inputText(
+            field = forma("clave_proveed"),
+            args = '_label -> "Numero Proveedor"
+          )
+          </div>
+        <div class="span4">
+          <input type="submit" value="Filtrar">
+        </div>
+      </div>
+          
+  }
+
+  <table class="table table-striped table-bordered">
+    <caption>Proveedor</caption>
+    <thead>
+       <tr>
+         <th> Num. Proveedor</th>
+         <th> Compa–ia </th>
+         <th> Telefono </th>
+       </tr>
+    </thead>
+    }
