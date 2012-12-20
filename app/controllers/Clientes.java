@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 import models.Cliente;
@@ -13,11 +14,18 @@ import play.db.ebean.*;
 import static play.data.Form.*;
 import com.avaje.ebean.ExpressionList;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import views.html.*;
 
 public class Clientes extends Controller {
 	
-	public static Result index() {
+	public static Result index() throws DocumentException {
 		Form<formas.clientes.Filtro> filtroForma = form(formas.clientes.Filtro.class).bindFromRequest();
 		List<Cliente> clientes;
 		formas.clientes.Filtro cliente = filtroForma.get();
@@ -33,7 +41,32 @@ public class Clientes extends Controller {
 			clientes = Cliente.find.all();
 		}
 		clientes = encontrar.findList();
-		return ok(views.html.clientes.index.render(clientes,filtroForma));
+		if (request().getQueryString("export_to") != null && request().getQueryString("export_to").equals("pdf")) {
+			PdfPTable tabla = new PdfPTable(3);
+			PdfPCell cell;
+			cell = new PdfPCell(new Phrase("Reporte de Clientes"));
+			cell.setColspan(3);
+			tabla.addCell(cell);
+			tabla.addCell("Numero");
+			tabla.addCell("Nombre");
+			tabla.addCell("RFC");
+			for(Cliente tabla_cliente: clientes) {
+				tabla.addCell(Long.toString(tabla_cliente.num_cte));
+				tabla.addCell(tabla_cliente.nombre());
+				tabla.addCell(tabla_cliente.rfc_cte);
+			}
+			Document resultado_pdf = new Document();
+			ByteArrayOutputStream stream = new ByteArrayOutputStream();
+			PdfWriter.getInstance(resultado_pdf, stream);
+			resultado_pdf.open();
+			resultado_pdf.add(tabla);
+			resultado_pdf.close();
+			response().setContentType("application/pdf");
+			response().setHeader("Content-Disposition", "attachment;filename=clientes.pdf");
+			return ok(stream.toByteArray());
+		} else {
+		    return ok(views.html.clientes.index.render(clientes,filtroForma));
+		}
 	}
 	
 	public static Result nuevo() {

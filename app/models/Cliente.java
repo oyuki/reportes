@@ -51,6 +51,10 @@ public class Cliente extends Model {
 	@Constraints.Required
 	public String email_cte;
 
+	public String nombre() {
+		return nomb_cte.concat(" ").concat(ap_pat_cte).concat(" ").concat(ap_mat_cte);
+	}
+	
     public static List<Cliente> findByNombre(String nombre) {
         return Cliente.find.where()
             .like("nomb_cte","%" + nombre + "%")
