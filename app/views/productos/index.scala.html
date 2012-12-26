@@ -1,4 +1,4 @@
-@(formaFiltros: Form[formas.productos.Filtro])
+@(formaFiltros: Form[formas.productos.Filtro], productos: List[Producto])
 
 @import helper._
 
@@ -18,17 +18,17 @@
             args = '_label -> "Nombre Producto"
           )
         </div>
+        <div class="span4">
+          <input type="submit" value="Filtrar">
+        </div>
       </div>
       <div class="span12">
-        <div class="span4">
+        <!-- div class="span4">
           @inputText(
             field = formaFiltros("prec_prod"),
             args = '_label -> "Precio producto"
           )
-        </div>
-        <div class="span4">
-          <input type="submit" value="Filtrar">
-        </div>
+        </div -->
       </div>
   }
 
@@ -41,5 +41,12 @@
          <th> Precio Producto </th>
        </tr>
     </thead>
+    @productos.map { producto =>
+      <tr>
+        <td>@producto.clav_prod</td>
+        <td>@producto.nomb_prod</td>
+        <td>@producto.prec_prod</td>
+      </tr>
+    }
   </table>
 }

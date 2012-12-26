@@ -10,7 +10,7 @@ import play.data.*;
 import play.db.ebean.*;
 import static play.data.Form.*;
 
-import views.html.*;
+import views.html.proveedores.*;
 
 
 public class Proveedores extends Controller {
@@ -19,10 +19,8 @@ public class Proveedores extends Controller {
 	  return ok(views.html.proveedores.index.render(form(formas.proveedores.Filtro.class)));
 	}
 
-public static Result individual() {
-	 
-	 return ok(views.html.proveedores.individual.render(form(formas.proveedores.Individual.class)));
- }
-	
+    public static Result individual() {
+	  return ok(individual.render(form(formas.proveedores.Individual.class)));
+    }
 	
 }

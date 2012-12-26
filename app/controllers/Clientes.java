@@ -21,7 +21,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
-import views.html.*;
+import views.html.clientes.*;
 
 public class Clientes extends Controller {
 	
@@ -81,32 +81,14 @@ public class Clientes extends Controller {
 		formas.Cliente cliente = clienteForma.get();
 		
 		// Creamos un nuevo objeto del modelo donde lo queremos guardar
-		models.Cliente nuevoCliente = new models.Cliente();
-		
-		// Se asignan los valores de la forma al modelo para después guardarlo
-		nuevoCliente.nomb_cte = cliente.nombre_cte;
-		nuevoCliente.ap_pat_cte = cliente.ap_pat_cte;
-		nuevoCliente.rfc_cte = cliente.rfc_cte;
-		nuevoCliente.ap_mat_cte = cliente.ap_mat_cte;
-		nuevoCliente.calle_cte = cliente.calle_cte;
-		nuevoCliente.mun_cte = cliente.mun_cte;
-		nuevoCliente.num_calle_cte = cliente.num_calle_cte;
-		nuevoCliente.colonia_cte = cliente.colonia_cte;
-		nuevoCliente.codp_cte = cliente.codp_cte;
-		nuevoCliente.mun_cte = cliente.mun_cte;
-		nuevoCliente.est_cte = cliente.est_cte;
-		nuevoCliente.tel_cte = cliente.tel_cte;
-		nuevoCliente.email_cte = cliente.email_cte;
-		
-		// Ebean se encarga de guardar el nuevo registro
-		Ebean.save(nuevoCliente);
+		models.Cliente.create(cliente);
 		
 		// Una vez creado el registro, redireccionamos el cliente a la accion index
 		return redirect(routes.Clientes.index());
 	}
 	
 	 public static Result individual() {
-	    return ok(views.html.clientes.individual.render(form(formas.clientes.Individual.class)));
+	    return ok(individual.render(form(formas.clientes.Individual.class)));
 	 }
 	
 }
