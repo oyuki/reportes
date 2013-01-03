@@ -15,7 +15,8 @@ GET  /proveedores                    controllers.Proveedores.index()
 GET /proveedores/individual          controllers.Proveedores.individual()
 
 # Empleados
-GET  /empleados                      controllers.Empleados.index()
+GET /empleados:format                controllers.Empleados.index(format: String)
+GET /empleados/puesto:format         controllers.Empleados.puesto(format: String)
 
 # Comandas
 GET /comandas                        controllers.Comandas.index()
@@ -24,7 +25,7 @@ GET /comandas                        controllers.Comandas.index()
 GET /niveles                         controllers.Niveles.index()
 
 #Productos
-GET /productos                       controllers.Productos.index()
+GET /productos:format                controllers.Productos.index(format: String)
 
 #Insumos
 GET /insumos                         controllers.Insumos.index()                    

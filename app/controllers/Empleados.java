@@ -14,9 +14,11 @@ import views.html.empleados.*;
 
 public class Empleados extends Controller {
 	
-	public static Result index() {
-		return ok(views.html.empleados.index.render(form(formas.empleados.Filtro.class)));
-       }
+	public static Result index(String format) {
+		return ok(index.render(form(formas.empleados.Filtro.class)));
+    }
+	
+	public static Result puesto(String format) {
+		return ok();
+	}
 }
-	
-	
