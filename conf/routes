@@ -30,5 +30,11 @@ GET /productos:format                controllers.Productos.index(format: String)
 #Insumos
 GET /insumos                         controllers.Insumos.index()                    
 
+# Ventas
+GET /ventas:format                   controllers.Ventas.index(format: String)
+GET /ventas/semanal:format           controllers.Ventas.semanal(format: String)
+GET /ventas/mensual:format           controllers.Ventas.mensual(format: String)
+GET /ventas/:id                      controllers.Ventas.show(id: Integer)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
