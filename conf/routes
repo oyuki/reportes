@@ -16,7 +16,7 @@ GET /proveedores/individual          controllers.Proveedores.individual()
 
 # Empleados
 GET /empleados:format                controllers.Empleados.index(format: String)
-GET /empleados/puesto:format         controllers.Empleados.puesto(format: String)
+GET /empleados/:id                   controllers.Empleados.show(id: Integer)
 
 # Comandas
 GET /comandas                        controllers.Comandas.index()

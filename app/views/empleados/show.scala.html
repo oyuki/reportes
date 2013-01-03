@@ -1,0 +1,23 @@
+@(empleado: models.Empleado)
+
+
+@main("Empleado") {
+
+  <address>
+    <strong>@empleado.nombre</strong> <br>
+    @empleado.calle_empl @empleado.num_calle_empl,
+    @empleado.colonia_empl @empleado.mun_empl<br>
+    @empleado.est_empl, CP: @empleado.codp_empl<br>
+    
+    <br>
+    Fecha Alta: @empleado.f_alta_empl<br>
+    Fecha Inicio Puesto Actual: @empleado.f_ini_puesto_act_empl<br>
+    Tel Casa: @empleado.tel_fijo_empl<br>
+    Tel Celular: @empleado.tel_cel_empl<br>
+
+    <br>
+    Puesto: <strong>@empleado.puesto_empl</strong><br>
+    Centro de Trabajo: @empleado.cen_trab_empl<br>
+  </address>
+
+}
