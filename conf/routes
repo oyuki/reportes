@@ -3,11 +3,11 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+GET     /                            controllers.Application.index()
 
 GET  /clientes                       controllers.Clientes.index()
 GET  /clientes/nuevo                 controllers.Clientes.nuevo()
-GET  /clientes/individual            controllers.Clientes.individual()
+GET  /clientes/:id                   controllers.Clientes.show(id: Integer)
 POST /clientes                       controllers.Clientes.crear()
 
 # Proveedores

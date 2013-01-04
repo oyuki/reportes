@@ -1,0 +1,18 @@
+@(cliente: Cliente )
+
+@import helper._
+
+@main("Clientes") {
+   <address>
+     <strong>@cliente.nombre()</strong><br>
+     <string>RFC:</string> @cliente.rfc_cte <br>
+     @cliente.calle_cte @cliente.num_calle_cte <br>
+     @cliente.colonia_cte, CP: @cliente.codp_cte <br>
+     @cliente.mun_cte, @cliente.est_cte <br>
+     <br>
+     
+     Tel: @cliente.tel_cte <br>
+     Email: @cliente.email_cte <br>
+     
+   </address>
+}

@@ -87,8 +87,9 @@ public class Clientes extends Controller {
 		return redirect(routes.Clientes.index());
 	}
 	
-	 public static Result individual() {
-	    return ok(individual.render(form(formas.clientes.Individual.class)));
+	 public static Result show(Integer id) {
+		 Cliente cliente = Ebean.find(Cliente.class, id);
+		 return ok(show.render(cliente));
 	 }
 	
 }

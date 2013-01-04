@@ -1,12 +1,12 @@
 @(ventas: List[models.consultas.Ventas])
 
-@main("Ventas por Mes") {
+@main("Ventas por Semana") {
 
   <table class="table table-striped table-bordered">
     <caption>Ventas</caption>
     <thead>
        <tr>
-         <th> Mes </th>
+         <th> Semana </th>
          <th> Total </th>
          <th> Detalles </th>
        </tr>
@@ -14,9 +14,9 @@
     <tbody>
     @ventas.map { venta =>
       <tr>
-        <td>@venta.getMes()</td>
+        <td>@venta.getSemana()</td>
         <td>@venta.getTotal()</td>
-        <td><a href="/ventas.html?mes=@venta.getMes()">Detalles</a></td>
+        <td><a href="/ventas.html?semana=@venta.getSemana()">Detalles</a></td>
       </tr>
     }
     </tbody>

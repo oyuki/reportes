@@ -7,6 +7,9 @@ import javax.persistence.*;
 import play.db.ebean.Model.Finder;
 
 import com.avaje.ebean.Ebean;
+import com.avaje.ebean.RawSql;
+import com.avaje.ebean.RawSqlBuilder;
+import com.avaje.ebean.Query;
 
 @Entity
 @Table(name="comandas")

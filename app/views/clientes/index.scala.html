@@ -32,6 +32,7 @@
          <th> Num. Cliente </th>
          <th> Nombre </th>
          <th> RFC </th>
+         <th> Detalles </th>
        </tr>
     </thead>
     <tbody>
@@ -40,6 +41,7 @@
         <td>@cliente.num_cte</td>
         <td>@cliente.nomb_cte @cliente.ap_pat_cte @cliente.ap_mat_cte</td>
         <td>@cliente.rfc_cte</td>
+        <td><a href="/clientes/@cliente.num_cte">Detalles</a>
       </tr>
     }
     </tbody>
