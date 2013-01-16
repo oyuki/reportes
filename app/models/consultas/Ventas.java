@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;  
 import javax.persistence.OneToOne;  
 
+import models.Producto;
 import models.Venta;
   
 import com.avaje.ebean.Ebean;
@@ -20,6 +21,14 @@ public class Ventas {
 	Double total;
 	Integer semana;
 	Integer mes;
+	Integer claveProducto;
+	
+	public Integer getClaveProducto() {
+		return claveProducto;
+	}
+	public void setClaveProducto(Integer claveProducto) {
+		this.claveProducto = claveProducto;
+	}
 	
 	public Integer getMes() {
 		return mes;
@@ -41,6 +50,10 @@ public class Ventas {
 	
 	public Double getTotal() {
 		return total;
+	}
+	
+	public Producto getProducto() {
+		return Ebean.find(Producto.class, getClaveProducto());
 	}
 
 	public static List<models.consultas.Ventas> ventasPorSemana() {
@@ -71,5 +84,19 @@ public class Ventas {
 	    query.setRawSql(rawSql);
 	    return query.findList();
 	}
-
+	
+	public static List<models.consultas.Ventas> loMasVendido() {
+		String sql = "select clav_prod_coman, SUM(cant_prod_coman) suma " +
+						"from detalle_comanda " +
+						"group by clav_prod_coman " +
+						"order by suma desc";
+		RawSql rawSql = RawSqlBuilder
+				.unparsed(sql)
+				.columnMapping("clav_prod_coman", "claveProducto")
+				.columnMapping("suma", "total")
+				.create();
+		Query<models.consultas.Ventas> query = Ebean.find(models.consultas.Ventas.class);  
+	    query.setRawSql(rawSql);
+	    return query.findList();
+	}
 }

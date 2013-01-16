@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReqPend" language="java" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f9bee19c-d3b5-4b60-887d-e96c36e91409">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT requisiciones_alm.f_ord_pedido, requisiciones_alm.fecha_req_alm, requisiciones_alm.num_ord_pedido,
+requisiciones_alm.num_req_alm, sedes.nomb_rest
+FROM requisiciones_alm INNER JOIN sedes
+ON requisiciones_alm.origen_ord_pedido = sedes.id_rest
+WHERE requisiciones_alm.Estatus_req_alm = 'P'
+GROUP BY requisiciones_alm.f_ord_pedido, requisiciones_alm.fecha_req_alm, requisiciones_alm.num_ord_pedido,
+requisiciones_alm.num_req_alm, sedes.nomb_rest]]>
+	</queryString>
+	<field name="f_ord_pedido" class="java.lang.String"/>
+	<field name="fecha_req_alm" class="java.lang.String"/>
+	<field name="num_ord_pedido" class="java.lang.Long"/>
+	<field name="num_req_alm" class="java.lang.Long"/>
+	<field name="nomb_rest" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement uuid="306db5a0-a04f-469c-ab0d-5d265a783f14" x="325" y="3" width="300" height="64"/>
+				<imageExpression><![CDATA["leaf_banner_gray.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="7a3f7f12-574a-48dc-a879-3a5f73351d0c" style="Title" x="0" y="13" width="274" height="33"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Fraternos WebReport]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c69acb45-d36e-4900-a103-56525c5c513c" style="SubTitle" x="64" y="46" width="210" height="22"/>
+				<textElement/>
+				<text><![CDATA[Requisiciones Pendientes]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement uuid="bf179cbe-6a26-4d4f-bd99-51bdd50ba099" positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="aa0a9695-64c8-44fe-b2eb-0877b32f96f1" style="Column header" x="0" y="19" width="111" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[F. de Solicitud]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5eab12dd-0aed-447c-a8ff-4cd37bb48703" style="Column header" x="111" y="19" width="148" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[F. de Recepción Alm.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b8e5c6f1-09d0-415b-a33e-5abb1a93ca76" style="Column header" x="259" y="19" width="103" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[# de Solicitud]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="75bd3f0c-10e5-49aa-92dd-139b7d2bbae8" style="Column header" x="361" y="19" width="111" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Num. Req. en Alm.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="311e952d-9652-49a3-a49f-e69025624a2e" style="Column header" x="471" y="19" width="100" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Origen]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="f186fff1-1714-4950-a0cd-b7a3f23da984" positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="9f0744c0-c573-4645-9d0e-f5fdece31964" style="Detail" x="0" y="0" width="111" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{f_ord_pedido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cb155806-673b-4afc-a8b9-ef16eaed3394" style="Detail" x="111" y="0" width="148" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fecha_req_alm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="15db3c4a-8266-43e6-984b-358b35f97c94" style="Detail" x="259" y="0" width="103" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{num_ord_pedido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9d2b9469-fd77-4300-8506-9f4737629197" style="Detail" x="361" y="0" width="111" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{num_req_alm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="343c0060-bef7-46ff-abe1-e8d15efbb5d1" style="Detail" x="471" y="0" width="100" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nomb_rest}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement uuid="7a8b6d75-0dc2-45e8-b836-1b54c2cbe6f3" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="d4bdabd2-0c65-4df4-a60f-544ca667ea8d" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="558e8144-4ffb-4de2-9673-6d98f99db079" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="a3f04c1c-56d1-462e-b4f9-e388e5356129" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

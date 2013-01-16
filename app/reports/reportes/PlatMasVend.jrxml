@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PlatMasVend" language="java" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cb392c87-dc8f-48bc-a3d2-79b009c86eef">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT detalle_comanda.clav_prod_coman, productos.nomb_prod, SUM(detalle_comanda.cant_prod_coman) as vendidos
+ FROM detalle_comanda INNER JOIN productos
+ ON detalle_comanda.clav_prod_coman = productos.clav_prod
+ GROUP BY detalle_comanda.clav_prod_coman, productos.nomb_prod
+ HAVING COUNT (*) > 1
+ ORDER BY vendidos DESC]]>
+	</queryString>
+	<field name="clav_prod_coman" class="java.lang.Long"/>
+	<field name="nomb_prod" class="java.lang.String"/>
+	<field name="vendidos" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement uuid="9cf978f2-7f75-4a2c-85cf-39cf25b5529b" x="325" y="3" width="300" height="64"/>
+				<imageExpression><![CDATA["leaf_banner_gray.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="a850c770-d09e-480b-8b35-e9cd9166532f" style="Title" x="0" y="13" width="274" height="33"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Fraternos WebReport]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="78420f45-9a5f-4e70-a6e1-c1901dfe6765" style="SubTitle" x="92" y="46" width="182" height="22"/>
+				<textElement/>
+				<text><![CDATA[Platillos Más Vendidos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement uuid="ab586b3a-2da4-43c1-87dc-74742f869335" positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="57d26508-dab2-47d5-bef6-65eea70a9add" style="Column header" x="0" y="19" width="44" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Clave]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6b85bf8a-89be-42f0-9765-cf1dc4e169fe" style="Column header" x="44" y="19" width="405" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Nombre de Platillo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="90fb66bc-1373-444a-abf6-4e5805de7678" style="Column header" x="448" y="19" width="107" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Cantidad Vendida]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="a7c3c790-1a4a-409a-9442-0f6c73332078" positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="c1879208-b403-4f78-97d6-dd1cefd3ca23" style="Detail" x="0" y="0" width="44" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{clav_prod_coman}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cfcda92b-5b52-41f4-b581-165a075247c3" style="Detail" x="44" y="0" width="405" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nomb_prod}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="07bbbead-e5c0-45ea-ad86-77be9b9d3c19" style="Detail" x="448" y="0" width="107" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{vendidos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement uuid="274305ec-aeab-4ca2-ba9d-48ebba093a7d" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="871f8ddf-0941-4f27-ac6e-f7ebb00e6547" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="298fb5a8-a52c-48fa-ba38-2c710d9e64b7" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="af5f1a16-938d-42d7-b5ab-fb14276c5b36" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

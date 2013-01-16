@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReqHist" language="java" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1414e4f1-21ff-49b0-a162-ef4433c0857f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT requisiciones_alm.num_req_alm, requisiciones_alm.f_ord_pedido, requisiciones_alm.fecha_req_alm,
+requisiciones_alm.origen_ord_pedido, requisiciones_alm.Estatus_req_alm
+FROM requisiciones_alm
+WHERE requisiciones_alm.Estatus_req_alm <> 'P']]>
+	</queryString>
+	<field name="num_req_alm" class="java.lang.Long"/>
+	<field name="f_ord_pedido" class="java.lang.String"/>
+	<field name="fecha_req_alm" class="java.lang.String"/>
+	<field name="origen_ord_pedido" class="java.lang.Integer"/>
+	<field name="Estatus_req_alm" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement uuid="25058f8d-b97c-49e1-a956-b6246406fbc8" x="325" y="3" width="300" height="64"/>
+				<imageExpression><![CDATA["leaf_banner_gray.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="40456a9d-5689-4ca7-9649-35bb56fc27ff" style="Title" x="0" y="13" width="274" height="33"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Fraternos WebReport]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="59678fce-23de-4bde-9e03-c09fe69b8cc4" style="SubTitle" x="73" y="46" width="201" height="22"/>
+				<textElement/>
+				<text><![CDATA[Requisiciones Históricas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement uuid="4c2f5c9b-2f2a-4472-a7bf-2020c5e66903" positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="4179e8a1-d74c-4c05-bbfa-759265c85314" style="Column header" x="0" y="19" width="123" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Num. de Requisición]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a2b7f07c-e3a9-4d60-891d-aed8c381974d" style="Column header" x="122" y="19" width="121" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha de Solicitud]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9de9d974-54b1-4804-8b7f-e5397f04b162" style="Column header" x="243" y="19" width="173" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha de Recepción en Alm.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6566f672-93a7-4db8-b82c-533d623ec7eb" style="Column header" x="416" y="19" width="88" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Origen]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3967566f-a9cb-47f5-9886-d0851fc78752" style="Column header" x="503" y="19" width="52" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Estatus]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="3c844f66-ea43-4e07-bc31-1730973e0595" positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="64086b99-ff16-40dc-84aa-f24f6ff47e04" style="Detail" x="0" y="0" width="123" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{num_req_alm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d032cd1a-5583-4062-8a9b-4c4ca4c854fc" style="Detail" x="122" y="0" width="121" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{f_ord_pedido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="796a4f3f-6de4-407d-8429-cfb8957c65e6" style="Detail" x="243" y="0" width="173" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fecha_req_alm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ffc4240f-6677-4cb7-af17-577e8a309b24" style="Detail" x="416" y="0" width="88" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{origen_ord_pedido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="55611f33-0dc8-4991-ae31-b5f221a1062b" style="Detail" x="503" y="0" width="52" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Estatus_req_alm}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement uuid="b797c072-ffaf-4fda-99d3-3e1e21297b60" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="c18c2e80-58de-4829-a060-0829391e811f" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="ff0d8a60-ac6c-4243-b599-26fdaacc6f92" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="5ffff15a-98ce-49a6-8705-621381f66812" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a2b7f07c-e3a9-4d60-891d-aed8c381974d" style="Column header" x="180" y="-31" width="236" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Estatus: A = Atendida, C = Cancelada]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

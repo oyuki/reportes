@@ -1,0 +1,23 @@
+@(proveedor: models.Proveedor)
+
+
+@main("Proveedor") {
+
+  <address>
+    <strong>@proveedor.clav_proveed</strong> <br>
+    @proveedor.calle_proveed  @proveedor.num_calle_proveed<br>
+    @proveedor.colonia_proveed <br>
+    @proveedor.mun_proveed @proveedor.est_proveed<br>
+    CP: @proveedor.codp_proveed<br>
+       
+    <br>
+    Fecha Alta: @proveedor.f_alta_proveed<br>
+    Telefono Celular:@proveedor.tel_cel_cont1_proveed<br>
+    Tel Contacto 2:@proveedor.cont2_proveed<br>
+    Tel Celular Contacto 2:@proveedor.tel_cel_cont2_proveed<br>
+    Email :@proveedor.email_cont2_proveed<br>
+    Observaciones: @proveedor.observaciones_proveed<br>
+   
+   
+   
+   }

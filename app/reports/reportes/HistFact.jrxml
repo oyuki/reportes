@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HistFact" language="java" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ecd0532b-083c-40a4-9348-e09c53378610">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT facturas.fecha_factura, clientes.ap_pat_cte, clientes.ap_mat_cte,
+clientes.nomb_cte, SUM(facturas.total_factura) AS Monto
+FROM facturas INNER JOIN clientes
+ON facturas.rfc_clt_factura = clientes.rfc_cte
+GROUP BY facturas.fecha_factura, clientes.ap_pat_cte, clientes.ap_mat_cte,
+clientes.nomb_cte
+HAVING COUNT (*) >= 1]]>
+	</queryString>
+	<field name="fecha_factura" class="java.lang.String"/>
+	<field name="ap_pat_cte" class="java.lang.String"/>
+	<field name="ap_mat_cte" class="java.lang.String"/>
+	<field name="nomb_cte" class="java.lang.String"/>
+	<field name="Monto" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement uuid="dc4bea73-6e36-4264-8ba6-18d1d8f16734" x="325" y="3" width="300" height="64"/>
+				<imageExpression><![CDATA["leaf_banner_gray.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="f4c84a38-0b6c-4c97-ae34-1e71ba96acc2" style="Title" x="0" y="13" width="274" height="33"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Fraternos WebReport]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="759df7f7-7e64-4c65-9795-6468ce2f6b5b" style="SubTitle" x="101" y="46" width="173" height="22"/>
+				<textElement/>
+				<text><![CDATA[Histórico de Facturas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement uuid="6656e007-88a6-4096-9a5d-9a502c53d883" positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="83dfe924-54b1-4eca-a393-03cdff31ed90" style="Column header" x="0" y="20" width="87" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ff60c169-8571-4673-90da-1d5d95b07b0c" style="Column header" x="87" y="20" width="136" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Apellido Paterno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6550e95b-b5ef-4967-9370-8ef984420ae6" style="Column header" x="223" y="20" width="134" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Apellido Materno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4608545c-8ff2-4d16-aae3-52dfa189b201" style="Column header" x="356" y="19" width="135" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="27d1177c-dafb-4d7e-8cc9-5a25aa78a79b" style="Column header" x="490" y="19" width="81" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Monto]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="564ca90e-9a13-4059-aeea-8133cfbf2095" positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="eea43756-6f82-4887-ace6-4c18b7ee3e42" style="Detail" x="0" y="0" width="87" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fecha_factura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fc45287d-3157-4971-af09-998f4def911f" style="Detail" x="87" y="1" width="136" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ap_pat_cte}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8c5b57dc-021c-4464-beec-7e892913d41d" style="Detail" x="223" y="1" width="134" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ap_mat_cte}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3c356af3-9e1d-495d-9b87-41509d4b9f58" style="Detail" x="356" y="0" width="135" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nomb_cte}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c1d8f1bc-7455-4f30-ba76-6cd32b192c4d" style="Detail" x="490" y="0" width="81" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Monto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement uuid="ca7eb752-0c91-447a-8e86-fa5c203519f9" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="de62e453-a0dc-425a-b421-10464a802ece" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="e236069b-2c1b-4b14-818d-519a8df95db8" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="ab048a33-c602-4a7a-8e35-5f010c063dae" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -91,9 +91,9 @@ public class Ventas extends Controller {
 	}
 	
 	public static Result show(Integer id) {
-		return ok("show");
-//		Venta venta = Ebean.find(Venta.class, id);
-//		return ok(show.render(venta));
+//		return ok("show");
+		Venta venta = Ebean.find(Venta.class, id);
+		return ok(show.render(venta));
 	}
 	
 	public static Result semanal(String format) {
@@ -104,5 +104,33 @@ public class Ventas extends Controller {
 	public static Result mensual(String format) {
 		List<models.consultas.Ventas> ventas = models.consultas.Ventas.ventasPorMes();
 		return ok(mensual.render(ventas));
+	}
+	
+	public static Result loMasVendido(String format) throws DocumentException {
+		List<models.consultas.Ventas> ventas = models.consultas.Ventas.loMasVendido();
+		if (format.equals(".pdf")) {
+			PdfPTable tabla = new PdfPTable(2);
+			PdfPCell cell;
+			cell = new PdfPCell(new Phrase("Reporte de lo Mas Vendido"));
+			cell.setColspan(2);
+			tabla.addCell(cell);
+			tabla.addCell("Producto");
+			tabla.addCell("Cantidad");
+			for(models.consultas.Ventas tabla_venta: ventas) {
+				tabla.addCell(tabla_venta.getProducto().nomb_prod);
+				tabla.addCell(Double.toString(tabla_venta.getTotal()));
+			}
+			Document resultado_pdf = new Document();
+			ByteArrayOutputStream stream = new ByteArrayOutputStream();
+			PdfWriter.getInstance(resultado_pdf, stream);
+			resultado_pdf.open();
+			resultado_pdf.add(tabla);
+			resultado_pdf.close();
+			response().setContentType("application/pdf");
+			response().setHeader("Content-Disposition", "attachment;filename=lo_mas_vendido.pdf");
+			return ok(stream.toByteArray());
+		} else {
+			return ok(lo_mas_vendido.render(ventas));		
+		}
 	}
 }

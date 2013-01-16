@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HistVentas" language="java" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4ed4aa59-0711-4028-876b-21b1221c8718">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT corte_caja.nom_cajero, corte_caja.total_com_canceladas, corte_caja.total_com_pagadas,
+corte_caja.saldo_total, turno.fecha, turno.turno
+FROM corte_caja INNER JOIN turno
+ON corte_caja.abrir_turno = turno.abrir_turno and turno.status = 'C'
+GROUP BY corte_caja.nom_cajero, corte_caja.total_com_canceladas, corte_caja.total_com_pagadas,
+corte_caja.saldo_total, turno.fecha, turno.turno]]>
+	</queryString>
+	<field name="nom_cajero" class="java.lang.String"/>
+	<field name="total_com_canceladas" class="java.lang.Integer"/>
+	<field name="total_com_pagadas" class="java.lang.Integer"/>
+	<field name="saldo_total" class="java.lang.Float"/>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="turno" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement uuid="f76419b9-0dbc-42e4-868d-09f9242456aa" x="325" y="3" width="300" height="64"/>
+				<imageExpression><![CDATA["leaf_banner_gray.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="83e8da36-cc5b-4039-94db-907761eaff3d" style="Title" x="0" y="13" width="274" height="33"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Fraternos WebReport]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="aee371f5-d367-4805-ae20-eb3dfb81666e" style="SubTitle" x="117" y="46" width="157" height="22"/>
+				<textElement/>
+				<text><![CDATA[Histórico de Ventas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement uuid="91dba19b-d77d-4555-aee1-6ba02c3ac1ce" positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="c9d024ab-211b-4135-b960-87627251a21f" style="Column header" x="0" y="19" width="107" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Nombre de Cajero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6ba9c70b-ad3e-44dc-9fb4-eb4f54b3353a" style="Column header" x="106" y="19" width="92" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Cancelaciones]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b028f699-e4e2-42cb-a0f7-4b33324d7c51" style="Column header" x="198" y="19" width="137" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Comandas Cobradas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cff1bb7a-cfa4-47d6-88ad-224f4c5aa519" style="Column header" x="334" y="19" width="92" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Monto de Venta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="25d615e8-0f48-41b8-ad4a-ce6951d403fe" style="Column header" x="426" y="19" width="84" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5940eb3d-b9ff-4c81-a077-c319254dd094" style="Column header" x="509" y="19" width="44" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Turno]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="d09bd8a2-dd5b-4727-ae0c-65d6e9c9e704" positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="b8b5a978-b57b-43aa-8ecc-a28f3441d313" style="Detail" x="0" y="0" width="107" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nom_cajero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="60d0009d-ff08-494b-99a4-e200b261994a" style="Detail" x="106" y="0" width="92" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{total_com_canceladas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d55920f9-4b06-41fe-8edc-247d98a7a0de" style="Detail" x="198" y="0" width="137" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{total_com_pagadas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9b054c23-4eb5-4a66-a597-be67113d3e20" style="Detail" x="334" y="0" width="92" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{saldo_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="20204a2f-5e1e-4c49-8bb3-d9a7cc8ff85c" style="Detail" x="426" y="0" width="84" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c0ee6c7d-c9e3-4d63-9466-78e3b997d511" style="Detail" x="509" y="0" width="44" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{turno}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement uuid="3d99d0fa-8a5e-4f9b-a78c-75f6f30c4816" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="b3e19b53-cf90-41c2-aefa-00923135e0c3" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="614b7c2b-febf-4cc5-a176-758209864034" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="e927d1cb-ba62-4be6-8732-212b67e9c829" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

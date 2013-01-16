@@ -1,6 +1,6 @@
 package formas.proveedores;
 
 public class Individual {
-	public String clave_proveed;
+	public String clav_proveed;
 
 }

@@ -27,6 +27,10 @@ public class VentaDetalle extends Model {
 		return Ebean.find(Producto.class, clav_prod_coman);
 	}
 	
+	public long total() {
+		return cant_prod_coman * prec_prod_det;
+	}
+	
 	public static Finder<Long, VentaDetalle> 
 	find = new Finder<Long, VentaDetalle>(Long.class, VentaDetalle.class);
 

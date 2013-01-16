@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ExisMin" language="java" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="42a26fd7-a176-4290-98b6-f8990b064606">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT insumos.nomb_insumo, insumos.un_med_insumo, insumos.cant_min_insumo, insumos.exist_insumo
+FROM insumos
+WHERE insumos.exist_insumo <= insumos.cant_min_insumo]]>
+	</queryString>
+	<field name="nomb_insumo" class="java.lang.String"/>
+	<field name="un_med_insumo" class="java.lang.String"/>
+	<field name="cant_min_insumo" class="java.lang.Integer"/>
+	<field name="exist_insumo" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement uuid="76bdceb7-59a3-4953-92f4-c3f7dfebd40f" x="325" y="3" width="300" height="64"/>
+				<imageExpression><![CDATA["leaf_banner_gray.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="38d8324e-e9d4-41ed-b95e-578694f40dbe" style="Title" x="0" y="13" width="276" height="33"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Fraternos WebReport]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="700485c4-d0cd-4748-9bb3-2ee19f5e2a7b" style="SubTitle" x="110" y="46" width="164" height="22"/>
+				<textElement/>
+				<text><![CDATA[Existencias Minimas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement uuid="ce8cfce8-cc8d-49a4-a896-68626fa98564" positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="680d23dd-ca6d-46f8-97de-23e1912e8784" style="Column header" x="0" y="19" width="184" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Nombre de Insumo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bec246e9-6c9e-43e0-9cf0-f5edff7694d0" style="Column header" x="184" y="19" width="113" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Unidad de Medida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b5cba96d-0177-47d5-991c-2d150a3724d9" style="Column header" x="296" y="19" width="138" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Cantidad Minima (25%)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="85f1fb94-1a06-4469-aec3-53913094155a" style="Column header" x="433" y="19" width="138" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Existencia Actual]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="8edd8537-84c9-4b28-9a4d-2a70942ada61" positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="00390c59-9163-4119-8294-590b1a530091" style="Detail" x="0" y="0" width="184" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nomb_insumo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b7b4de0a-8742-49eb-8f84-f1188f8959d1" style="Detail" x="184" y="0" width="113" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{un_med_insumo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1b4fb6c2-fb47-4f7c-9ae6-d291d9443415" style="Detail" x="296" y="0" width="138" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cant_min_insumo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b6619cb2-3163-4f81-9d58-9e5e70512238" style="Detail" x="433" y="0" width="138" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{exist_insumo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement uuid="2a894b73-1c2f-4faf-a2c2-ad48f5828935" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="7c0f4255-f4f0-4993-acb2-8de76a01c36d" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="f3409e0b-9c58-4eb0-859b-1fdcade25216" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="7479f2bb-1200-4c2e-8ade-8b9029477261" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

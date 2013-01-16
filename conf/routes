@@ -11,8 +11,8 @@ GET  /clientes/:id                   controllers.Clientes.show(id: Integer)
 POST /clientes                       controllers.Clientes.crear()
 
 # Proveedores
-GET  /proveedores                    controllers.Proveedores.index()
-GET /proveedores/individual          controllers.Proveedores.individual()
+GET  /proveedores:format             controllers.Proveedores.index(format: String)
+GET /proveedores/:id                 controllers.Proveedores.show(id: Integer)
 
 # Empleados
 GET /empleados:format                controllers.Empleados.index(format: String)
@@ -28,13 +28,18 @@ GET /niveles                         controllers.Niveles.index()
 GET /productos:format                controllers.Productos.index(format: String)
 
 #Insumos
-GET /insumos                         controllers.Insumos.index()                    
+GET /insumos:format                         controllers.Insumos.index(format: String)                    
 
 # Ventas
 GET /ventas:format                   controllers.Ventas.index(format: String)
 GET /ventas/semanal:format           controllers.Ventas.semanal(format: String)
 GET /ventas/mensual:format           controllers.Ventas.mensual(format: String)
+GET /ventas/lo-mas-vendido:format    controllers.Ventas.loMasVendido(format: String)
 GET /ventas/:id                      controllers.Ventas.show(id: Integer)
+
+
+#Reportes
+GET /reportes/articulos-mas-vendidos controllers.Reportes.artsMasVend()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
