@@ -12,6 +12,7 @@ import static play.data.Form.*;
 
 import views.html.*;
 
+@Security.Authenticated(Acceso.class)
 public class Niveles  extends Controller{
 	
 	public static Result index(){

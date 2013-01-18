@@ -5,6 +5,7 @@ import play.mvc.*;
 
 import views.html.*;
 
+@Security.Authenticated(Acceso.class)
 public class Application extends Controller {
   
     public static Result index() {

@@ -12,6 +12,7 @@ import static play.data.Form.*;
 
 import views.html.insumos.*;
 
+@Security.Authenticated(Acceso.class)
 public class Insumos extends Controller {
 	
 	public static Result index(String format) {

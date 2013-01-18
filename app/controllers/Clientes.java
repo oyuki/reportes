@@ -23,6 +23,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import views.html.clientes.*;
 
+@Security.Authenticated(Acceso.class)
 public class Clientes extends Controller {
 	
 	public static Result index() throws DocumentException {

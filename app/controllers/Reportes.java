@@ -10,6 +10,7 @@ import net.sf.jasperreports.engine.JRException;
 
 import com.lowagie.text.*;
 
+@Security.Authenticated(Acceso.class)
 public class Reportes extends Controller {
 	
 	public static Result artsMasVend() throws JRException {

@@ -14,6 +14,7 @@ import views.html.*;
 
 public class Comandas extends Controller {
 	
+@Security.Authenticated(Acceso.class)
 public static Result index() {
 	
 	return ok(views.html.comandas.index.render(form(formas.comandas.Filtro.class)));

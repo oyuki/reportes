@@ -22,7 +22,7 @@ import static play.data.Form.*;
 
 import views.html.proveedores.*;
 
-
+@Security.Authenticated(Acceso.class)
 public class Proveedores extends Controller {
 
 	public static Result index(String format) throws DocumentException {

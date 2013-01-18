@@ -22,6 +22,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import views.html.*;
 
+@Security.Authenticated(Acceso.class)
 public class Productos extends Controller {
 	
 	public static Result index(String format) throws DocumentException {
