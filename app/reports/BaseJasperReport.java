@@ -28,7 +28,6 @@ public class BaseJasperReport {
       String compiledFile = REPORT_DEFINITION_PATH + reportDefFile + ".jasper";
       JasperCompileManager.compileReportToFile(REPORT_DEFINITION_PATH + reportDefFile + ".jrxml", compiledFile);
       JasperPrint jrprint = JasperFillManager.fillReport(compiledFile, reportParams, play.db.DB.getConnection());
-//      JRExporter exporter = new JExcelApiExporter();
       JRExporter exporter = new JRPdfExporter();
       exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, os);
       exporter.setParameter(JRExporterParameter.JASPER_PRINT, jrprint);
