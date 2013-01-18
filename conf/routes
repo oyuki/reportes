@@ -54,7 +54,7 @@ GET /reportes/requisiciones_historial  controllers.Reportes.requisicionesHistori
 GET /login                        controllers.Usuarios.index()
 POST /login                       controllers.Usuarios.verificar()
 GET /prohibido                    controllers.Usuarios.prohibido()
-
+GET /cerrar                       controllers.Usuarios.cerrarSession()
 
 
 

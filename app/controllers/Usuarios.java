@@ -3,6 +3,7 @@ package controllers;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
 
+
 import models.*;
 
 import com.avaje.ebean.Ebean;
@@ -10,6 +11,7 @@ import com.avaje.ebean.ExpressionList;
 
 import play.*;
 import play.mvc.*;
+import play.api.mvc.Session;
 import play.data.*;
 import play.db.ebean.*;
 import static play.data.Form.*;
@@ -40,5 +42,10 @@ public class Usuarios extends Controller{
 	
 	public static Result prohibido() {
 		return ok("No tienes permiso de ver esta pagina");
+	}
+	
+	public static Result cerrarSession() {
+	    session().clear();
+	    return redirect("/login");
 	}
 }
